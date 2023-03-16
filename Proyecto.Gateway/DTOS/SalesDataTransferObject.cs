@@ -1,4 +1,4 @@
-﻿namespace Proyecto.Gateway.DTOS
+﻿namespace ProyectoConcurrencia.DTOS
 {
     public class SalesDataTransferObject
     {
