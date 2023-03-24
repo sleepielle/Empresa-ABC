@@ -1,7 +1,9 @@
 ﻿
 
 
-namespace ProyectoConcurrencia.Validations
+using ProyectoConcurrencia;
+
+namespace Proyecto.Gateway.Validations
 {
     public class Validations
     {

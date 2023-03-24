@@ -1,6 +1,6 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
-using ProyectoConcurrencia.DTOS;
+using Proyecto.Gateway.DTOS;
 using System.Globalization;
 
 namespace ProyectoConcurrencia.Validations

@@ -8,18 +8,19 @@ namespace Proyecto.Gateway.Controllers
     [Route("[controller]")]
     public class ProyectController : ControllerBase
     {
-        private readonly TransaccionServicecs _TransaccionService;
-        public ProyectController(TransaccionServicecs transaccionService)
+        private readonly TransactionService _TransaccionService;
+        public ProyectController(TransactionService transaccionService)
         {
-           _TransaccionService = transaccionService;
+            _TransaccionService = transaccionService;
         }
         [HttpPost]
-        public async Task<IActionResult> Post(Guid tId, CreateTransaccion lineToCreate)
+        public Task<IActionResult> Post(int Id, CreateTransaccion lineToCreate, Task<IActionResult> result)
         {
-            var result = await _TransaccionService.AddAsync(tId, lineToCreate);
-            return Ok(result);
+
+            var results =  _TransaccionService.ProcessTransaction( Id, lineToCreate);
+            return result;
         }
 
-        
+
     }
 }

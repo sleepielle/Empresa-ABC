@@ -2,7 +2,7 @@
 {
     public class CreateTransaccion
     {
-        public Guid UserId { get; set; }
+        public int Id { get; set; }
         public Status Status { get; set; }
         public List<string> Errors { get; set; }
     }

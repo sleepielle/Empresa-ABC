@@ -1,4 +1,4 @@
-﻿using ProyectoConcurrencia.DTOS;
+﻿using Proyecto.Gateway.DTOS;
 
 namespace ProyectoConcurrencia
 {

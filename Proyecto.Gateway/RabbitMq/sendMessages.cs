@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Proyecto.Gateway.DTOS;
 using ProyectoConcurrencia.DTOS;
-using ProyectoConcurrencia.Validations;
+using Proyecto.Gateway.Validations;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Reflection;
