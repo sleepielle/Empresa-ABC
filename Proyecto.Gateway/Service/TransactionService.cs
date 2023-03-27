@@ -7,7 +7,7 @@ using Proyecto.Gateway.Validations;
 using System.Threading.Channels;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.VisualBasic;
-using ProyectoConcurrencia.Validations;
+//using ProyectoConcurrencia.Validations;
 
 namespace Proyecto.Gateway.Service
 {
@@ -57,6 +57,25 @@ namespace Proyecto.Gateway.Service
             _info.Errors = error;
             return _info;
 
+        }
+        public void Notify(CreateTransaccion transaccion)
+        {
+            var factory = new ConnectionFactory
+            {
+                HostName = "localhost",
+                Port = 5672
+            };
+
+            using (var connection = factory.CreateConnection())
+            {
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare("notify-resumen", false, false, false, null);
+                    var json = JsonConvert.SerializeObject(transaccion);
+                    var body = Encoding.UTF8.GetBytes(json);
+                    channel.BasicPublish(string.Empty, "notify-resumen", null, body);
+                }
+            }
         }
 
 
