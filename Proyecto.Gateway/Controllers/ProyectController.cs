@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Proyecto.Gateway.DTOS;
 using Proyecto.Gateway.Service;
+using Proyecto.Gateway.RabbitMq;
+using System.Transactions;
 
 namespace Proyecto.Gateway.Controllers
 {
@@ -13,12 +15,12 @@ namespace Proyecto.Gateway.Controllers
         {
             _TransaccionService = transaccionService;
         }
-        [HttpPost]
-        public Task<IActionResult> Post(int Id, CreateTransaccion lineToCreate, Task<IActionResult> result)
+        [HttpPost("transaction")]
+        public async Task<List<CreateTransaccion>>ProcessTransaction([FromBody] CreateTransaccion create )
         {
-
-            var results =  _TransaccionService.ProcessTransaction( Id, lineToCreate);
-            return result;
+            List<CreateTransaccion> list = new List<CreateTransaccion>();
+            list.Add(create);
+            return await Task.FromResult(list);
         }
 
 

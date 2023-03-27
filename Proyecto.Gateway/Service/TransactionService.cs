@@ -34,16 +34,16 @@ namespace Proyecto.Gateway.Service
           
     }
       
-        public async Task<CreateTransaccion> ProcessTransaction(int Id, CreateTransaccion basketToCreate)
+        public async Task<CreateTransaccion> ProcessTransaction(int Id, CreateTransaccion ToCreate)
         {
-            var result = await _httpClient.PostAsJsonAsync("/transaction/",basketToCreate);
+            var result = await _httpClient.PostAsJsonAsync("/transaction/",ToCreate);
             result.EnsureSuccessStatusCode();
             var response = await result.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<CreateTransaccion>(response);
            
             }
 
-        public async Task<CreateTransaccion> ValidateTransaction(CreateTransaccion basketToCreate, CancellationToken token)
+        public async Task<CreateTransaccion> ValidateTransaction(CreateTransaccion ToCreate, CancellationToken token)
         {
             var error = new List<string>();
             var _info = new CreateTransaccion();
